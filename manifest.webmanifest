@@ -1,0 +1,31 @@
+
+    {
+        "name": "The Stellar Lumen",
+        "short_name": "TSL",
+        "start_url": "index.html",
+        "display": "standalone",
+        "background_color": "#2b9a79",
+        "theme_color": "#e5f0ed",
+        "description": "Experimental JavaScript game featuring many currencies , challenges and reset layer!",
+        "orientation": "portrait",
+        "icons": [
+            {
+                "src": "Icon.png",
+                "sizes": "128x128",
+                "type": "image/png",
+                "purpose": "any"
+            },
+            {
+                "src": "Icon.png",
+                "sizes": "128x128",
+                "type": "image/png",
+                "purpose": "maskable"
+            },
+            {
+                "src": "Icon.png",
+                "sizes": "128x128",
+                "type": "image/png",
+                "purpose": "maskable"
+            }
+        ]
+    }
