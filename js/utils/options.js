@@ -19,20 +19,16 @@ function getStartOptions() {
 }
 let notations = ['Standard' , 'Scientific' , 'Mixed Scientific', 'Engineering' , "Mixed Engineering" , "Hyper-E" , "Letters" , "Hexa" , "Binary" , "Genetic" , "Chemistry", "Blind", "Cancer"]
 
+
+
 let decimals = [3, 4, 5, 6, 7]
 
-
-let updateRate = [17, 22, 30, 50, 75, 100, 150, 225, 350]
 function changeNotation() {
 	player.notation = notations[(notations.indexOf(player.notation) + 1) % notations.length]
 }
 
 function changeDecimalPlaces() {
   player.decimal = decimals[(notations.indexOf(player.decimal) + 1) % decimals.length]
-}
-
-function changeRate() {
-  player.rate = updateRate[(updateRate.indexOf(player.rate) + 1) % updateRate.length]
 }
 
 function toggleOpt(name) {

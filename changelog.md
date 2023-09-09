@@ -37,7 +37,6 @@
 - More Anti-NaN safety.
 - Fixed challenges glowing from countsAs.
 - Improved tooltip centering (thanks to Scarlettt!)
-- 
 - canReset now works properly for non-custom layers.
 - Fixed baseAmount being set to 0 even when a layer resets nothing.
 - Fixed centering on tooltips.
