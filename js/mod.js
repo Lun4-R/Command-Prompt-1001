@@ -65,6 +65,7 @@ function getPointGen() {
 	let Production = new Decimal(1)
 	Production = Production.mul("ST", "T0-ST-1")
 	Production = Production.mul("TK", "T0-TK-1")
+	Production = Production.add(1)
 	return Production
 }
 

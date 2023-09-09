@@ -38,7 +38,7 @@ addLayer("TK", {
         let basepow = new Decimal(1)
         let bonus = x.div(10).add(1).floor()
         basepow = basepow.mul(bonus)
-        let calc = new Decimal.add(basepow)
+        let calc = new Decimal.add(basepow).add(1)
         return calc },
       effect(x) {
         let pow = new Decimal(1)
