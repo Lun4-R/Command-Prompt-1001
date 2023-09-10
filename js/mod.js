@@ -63,8 +63,8 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let Production = new Decimal(1)
-	Production = Production.mul("ST", "T0-ST-1")
-	Production = Production.mul("TK", "T0-TK-1")
+	Production = Production.mul(buyableEffect("ST", "T0-ST-1"))
+	Production = Production.mul(buyableEffect("TK", "T0-TK-1"))
 	Production = Production.add(1)
 	return Production
 }

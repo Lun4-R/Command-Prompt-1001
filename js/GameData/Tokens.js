@@ -36,13 +36,13 @@ addLayer("TK", {
     "T0-TK-1": {
       cost(x) {
         let basepow = new Decimal(1)
-        let bonus = x.div(10).add(1).floor()
+        let bonus = x.div(10).floor().add(1)
         basepow = basepow.mul(bonus)
-        let calc = new Decimal.add(basepow).add(1)
+        let calc = new Decimal.add(basepow)
         return calc },
       effect(x) {
         let pow = new Decimal(1)
-        pow = pow.add(x.div(10).add(1).floor())
+        pow = pow.add(x.div(10).floor()).add(1)
         return new Decimal.mul(pow, x).add(1)
         },
       display() {
