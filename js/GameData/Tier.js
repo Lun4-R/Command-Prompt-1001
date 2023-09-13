@@ -28,6 +28,12 @@ addLayer("T", {
     branches: ["ST"],
     T3bonus() {
       let base = new Decimal(3)
+      base = base.mul(hasMilestone("T", "T0-7") ? 3 : 1)
+      let tier = player.T.points
+      return new Decimal.pow(base, tier)
+    },
+    T7bonus() {
+      let base = new Decimal(5)
       let tier = player.T.points
       return new Decimal.pow(base, tier)
     },
@@ -93,7 +99,7 @@ addLayer("T", {
           effectDescription: `
           <b class="Body-Text-M">
           + Gain 3x more ST per Tier<br>
-          + 1st & 2nd T0 ST buyable base power is 10% weaker
+          + 1st & 2nd T0 ST buyable base power is weake
 
           </b>`,
           style() {
@@ -115,12 +121,13 @@ addLayer("T", {
       "T0-4": {
         requirementDescription() {
           return `
-            <b class='Title-Text-L'>4th Tier ( C-ALPH 0.0.1 endgame)</b>`
+            <b class='Title-Text-L'>4th Tier</b>`
         },
         done() { return player.T.points.gte(4) },
         effectDescription: `
           <b class="Body-Text-M">
-          + 1st T0 ST buyable base is multiplied by itself ( x * 0.142 ) 
+          + 1st T0 ST buyable base is multiplied by itself ( x * 0.142 )<br>
+          + 1st & 2nd T0 ST buyable base power weaker
           </b>`,
         style() {
           return {
@@ -136,6 +143,168 @@ addLayer("T", {
         },
         unlocked() {
           return hasMilestone(this.layer, "T0-3")
+        }
+      },
+      "T0-5": {
+        requirementDescription() {
+          return `
+            <b class='Title-Text-L'>5th Tier</b>`
+        },
+        done() { return player.T.points.gte(5) },
+        effectDescription: `
+          <b class="Body-Text-M">
+          + Unlock Ethereum<br>
+          + Upgrade Bit Machines into Byte Machines
+          </b>`,
+        style() {
+          return {
+            "background": "#ffffff",
+            "background-size": "50% !important",
+            "width": "600px",
+            "height": "auto",
+            "padding": "5px",
+            "border": "0px solid",
+            "border-radius": "10px",
+            "color": "#000000"
+          }
+        },
+        unlocked() {
+          return hasMilestone(this.layer, "T0-4")
+        }
+      },
+      "T0-6": {
+        requirementDescription() {
+          return `
+            <b class='Title-Text-L'>7th Tier</b>`
+        },
+        done() { return player.T.points.gte(7) },
+        effectDescription: `
+          <b class="Body-Text-M">
+          + Unlock 3rd T0 ETH Buyable<br>
+          + Gain 5x more Bits per Tier
+          </b>`,
+        style() {
+          return {
+            "background": "#ffffff",
+            "background-size": "50% !important",
+            "width": "600px",
+            "height": "auto",
+            "padding": "5px",
+            "border": "0px solid",
+            "border-radius": "10px",
+            "color": "#000000"
+          }
+        },
+        unlocked() {
+          return hasMilestone(this.layer, "T0-5")
+        }
+      },
+      "T0-7": {
+        requirementDescription() {
+          return `
+            <b class='Title-Text-L'>9th Tier</b>`
+        },
+        done() { return player.T.points.gte(9) },
+        effectDescription: `
+          <b class="Body-Text-M">
+          + Improve T3 1st milestone by 3x
+          </b>`,
+        style() {
+          return {
+            "background": "#ffffff",
+            "background-size": "50% !important",
+            "width": "600px",
+            "height": "auto",
+            "padding": "5px",
+            "border": "0px solid",
+            "border-radius": "10px",
+            "color": "#000000"
+          }
+        },
+        unlocked() {
+          return hasMilestone(this.layer, "T0-6")
+        }
+      },
+      "T0-8": {
+        requirementDescription() {
+          return `
+            <b class='Title-Text-L'>11th Tier</b>`
+        },
+        done() { return player.T.points.gte(11) },
+        effectDescription: `
+          <b class="Body-Text-M">
+          + Unlock 4th T0 ETH Buyable<br>
+          + Unlock a assortments of new Token upgrades ( soon )
+          </b>`,
+        style() {
+          return {
+            "background": "#ffffff",
+            "background-size": "50% !important",
+            "width": "600px",
+            "height": "auto",
+            "padding": "5px",
+            "border": "0px solid",
+            "border-radius": "10px",
+            "color": "#000000"
+          }
+        },
+        unlocked() {
+          return hasMilestone(this.layer, "T0-7")
+        }
+      },
+      "T0-9": {
+        requirementDescription() {
+          return `
+            <b class='Title-Text-L'>13th Tier</b>`
+        },
+        done() { return player.T.points.gte(13) },
+        effectDescription: `
+          <b class="Body-Text-M">
+          + 1st & 2nd T0 ST buyable base power are weaker<br>
+          + 3rd & 4th T0 ST buyable base power are weaker
+          </b>`,
+        style() {
+          return {
+            "background": "#ffffff",
+            "background-size": "50% !important",
+            "width": "600px",
+            "height": "auto",
+            "padding": "5px",
+            "border": "0px solid",
+            "border-radius": "10px",
+            "color": "#000000"
+          }
+        },
+        unlocked() {
+          return hasMilestone(this.layer, "T0-8")
+        }
+      },
+      "T0-10": {
+        requirementDescription() {
+          return `
+            <b class='Title-Text-L'>15th Tier ( ENDGAME OF 0.0.2x )</b>`
+        },
+        done() { return player.T.points.gte(15) },
+        effectDescription: `
+          <b class="Body-Text-M">
+          Upgrade hardware from 8-bit to 10-bit<br>
+          + Improve ETH Cooling rate<br>
+          + Unlock Rebooting ( soon )
+          </b>`,
+        style() {
+          return {
+            "background": "#ffffff",
+            "background-size": "50% !important",
+            "width": "600px",
+            "height": "auto",
+            "padding": "5px",
+            "border": "0px solid",
+            "border-radius": "10px",
+            "color": "#000000"
+          }
+        },
+        unlocked() {
+          return hasMilestone(this.layer, "T0-9")
         }
       }
     },

@@ -149,6 +149,67 @@ addLayer("TK", {
       }
       }
     },
+    "T0-TK-3": {
+      cost(x) {
+        let basepow = new Decimal(1)
+        let bonus = x.div(10).add(1).floor()
+        basepow = basepow.mul(bonus)
+        let calc = new Decimal.add(basepow)
+        return calc },
+      effect(x) {
+        let pow = new Decimal(1)
+        pow = pow.add(x.div(10).add(1).floor())
+        return new Decimal.mul(pow, x).add(1)
+        },
+      display() {
+        var S = tmp[this.layer].buyables[this.id]
+        var SV = player[this.layer].buyables[this.id]
+        return `
+        <div class='Buyable-Style'>
+        <b class='Body-Text-L'>${format(SV, 0)}</b>
+        <b class='Title-Text-M'>Extra Ethereum</b>
+       
+        <b class='Body-Text-XL'>x${format(S.effect)} Ethereum</b>
+        <b class='Body-Text-S'>${format(S.cost)} Tokens</b>
+        <br>
+        </div>`
+      },
+      buy() {
+        player[this.layer].tokens = player[this.layer].tokens.sub(this.cost())
+        setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+      },
+      canAfford() {
+        return player[this.layer].tokens.gte(this.cost())
+      },
+      style() {
+        if (tmp[this.layer].buyables[this.id].canAfford)
+        return {
+          "background-image": "url('images/T0-TK-Can.png')",
+          "background-size": "110% !important",
+          "width": "430px",
+          "height": "auto",
+          "border-radius": "10px",
+          "border": "0px",
+          "margin": "5px",
+          "text-shadow": "0px 0px 5px #000000",
+          "color": "#ffffff"
+        }
+      return {
+        "background-image": "url('images/T0-TK-Cant.png')",
+        "background-size": "110% !important",
+        "width": "430px",
+        "height": "auto",
+        "border-radius": "10px",
+        "border": "0px",
+        "margin": "5px",
+        "text-shadow": "0px 0px 10px #000000",
+        "color": "#ffffff"
+      }
+      },
+      unlocked() {
+        return hasMilestone("T", "T0-5")
+      }
+    },
     },
     tabFormat: {
       "Main": {
@@ -163,7 +224,8 @@ addLayer("TK", {
               "h-line",
               "blank",
               ["row", [["buyable", "T0-TK-1"]]],
-              ["row", [["buyable", "T0-TK-2"]]]
+              ["row", [["buyable", "T0-TK-2"]]],
+              ["row", [["buyable", "T0-TK-3"]]]
               ]
       },
     },

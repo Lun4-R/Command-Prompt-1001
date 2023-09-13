@@ -126,3 +126,58 @@ function getLogisticAmount(current, gain, loss, diff){
 			return val5.max(0)
 	}
 }
+
+const titleElement = document.getElementById("title");
+const artistElement = document.getElementById("artist");
+const audioElement = document.getElementById("audio");
+const playPauseButton = document.getElementById("playPause");
+const volumeSlider = document.getElementById("volume");
+
+// Replace these placeholders with your actual song information
+const songs = [
+  { title: "Noisa Sifu", artist: "Digital Moss", source: "Noisa-Sifu.mp3" },
+  { title: "Song 2", artist: "Artist 2", source: "song2.mp3" },
+      // Add more songs as needed
+    ];
+
+let currentSongIndex = 0;
+
+function updateSongInfo() {
+  titleElement.textContent = songs[currentSongIndex].title;
+  artistElement.textContent = songs[currentSongIndex].artist;
+  audioElement.src = songs[currentSongIndex].source;
+}
+
+function togglePlayPause() {
+  if (audioElement.paused) {
+    audioElement.play();
+    playPauseButton.textContent = "Pause";
+  } else {
+    audioElement.pause();
+    playPauseButton.textContent = "Play";
+  }
+}
+
+function playNext() {
+  currentSongIndex = (currentSongIndex + 1) % songs.length;
+  updateSongInfo();
+  audioElement.play();
+}
+
+function playPrevious() {
+  currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+  updateSongInfo();
+  audioElement.play();
+}
+
+function updateVolume() {
+  audioElement.volume = volumeSlider.value;
+}
+
+playPauseButton.addEventListener("click", togglePlayPause);
+document.getElementById("next").addEventListener("click", playNext);
+document.getElementById("previous").addEventListener("click", playPrevious);
+volumeSlider.addEventListener("input", updateVolume);
+
+// Initialize with the first song
+updateSongInfo();

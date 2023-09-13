@@ -1,7 +1,7 @@
 addLayer("ST", {
     name: "Stellar", // This is optional, only used in a few places, If absent it just uses the layer id.
     symbol() {
-      return `<img src='images/layers/Stellar_512x.png' height='100' width='100'>`
+      return `ST`
     }, // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
@@ -18,6 +18,7 @@ addLayer("ST", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         mult = mult.mul(buyableEffect("ST", "T0-ST-2"))
+        mult = mult.mul(buyableEffect("ETH", "T0-ETH-1"))
         mult = mult.mul(buyableEffect("TK", "T0-TK-2"))
         mult = mult.mul(hasMilestone("T", "T0-3") ? tmp.T.T3bonus : 1)
         return mult
@@ -40,7 +41,9 @@ addLayer("ST", {
     "T0-ST-1": {
       cost(x) {
         let basepow = new Decimal(1.25)
-        basepow = basepow.div(hasMilestone("T", "T0-3") ? 1.1 : 1)
+        basepow = basepow.pow(hasMilestone("T", "T0-3") ? 0.25 : 1)
+        basepow = basepow.pow(hasMilestone("T", "T0-4") ? 0.25 : 1)
+        basepow = basepow.pow(hasMilestone("T", "T0-9") ? 0.25 : 1)
         let pow1 = new Decimal.div(x, 100).add(1)
         let pow2 = new Decimal.div(x, 100).add(1)
         let pow3 = new Decimal.div(x, 100).add(1)
@@ -53,17 +56,22 @@ addLayer("ST", {
       effect(x) {
         let pow = new Decimal(1)
         let bonus = x.div(7).add(1)
-        pow = pow.mul(hasMilestone("T", "T0-4") ? bonus : 1)
         pow = pow.add(buyableEffect("ST", "T0-ST-3"))
-        return new Decimal.mul(pow, x)
+        pow = pow.mul(hasMilestone("T", "T0-4") ? bonus : 1)
+        pow = pow.mul(buyableEffect("ETH", "T0-ETH-3") )
+        let calc = new Decimal.mul(pow, x)
+        calc = calc.pow(hasMilestone("T", "T0-5") ? 2 : 1)
+        return calc
       },
       display() {
         var S = tmp[this.layer].buyables[this.id]
         var SV = player[this.layer].buyables[this.id]
+        let type = `Bit`
+        if (hasMilestone("T", "T0-5")) type = `Byte`
         return `
         <div class='Buyable-Style'>
         <b class='Body-Text-L'>${format(SV, 0)}</b>
-        <b class='Title-Text-M'>Bit Machines</b>
+        <b class='Title-Text-M'>${type} Machines</b>
        
         <b class='Body-Text-XL'>+${format(S.effect)} Bits / sec</b>
         <b class='Body-Text-S'>${format(S.cost)} Stellar</b>
@@ -106,7 +114,9 @@ addLayer("ST", {
     "T0-ST-2": {
       cost(x) {
         let basepow = new Decimal(1.15)
-        basepow = basepow.div(hasMilestone("T", "T0-3") ? 1.1 : 1)
+        basepow = basepow.pow(hasMilestone("T", "T0-3") ? 0.25 : 1)
+        basepow = basepow.pow(hasMilestone("T", "T0-4") ? 0.25 : 1)
+        basepow = basepow.pow(hasMilestone("T", "T0-9") ? 0.25 : 1)
         let pow1 = new Decimal.div(x, 100).add(1)
         let pow2 = new Decimal.div(x, 100).add(1)
         let pow3 = new Decimal.div(x, 100).add(1)
@@ -124,7 +134,7 @@ addLayer("ST", {
         let Base = new Decimal(131072)
         let x = player[this.layer].buyables[this.id]
         
-        let Calculation = new Decimal.pow(1.055, x.add(1))
+        let Calculation = new Decimal.pow(1.005, x.add(1))
         return Base.mul(Calculation).floor()
       },
       display() {
@@ -176,6 +186,7 @@ addLayer("ST", {
     "T0-ST-3": {
       cost(x) {
         let basepow = new Decimal(2)
+        basepow = basepow.pow(hasMilestone("T", "T0-9") ? 0.25 : 1)
         let pow1 = new Decimal.div(x, 100).add(1)
         let pow2 = new Decimal.div(x, 100).add(1)
         let pow3 = new Decimal.div(x, 100).add(1)
@@ -193,7 +204,7 @@ addLayer("ST", {
         let Base = new Decimal(25000)
         let x = player[this.layer].buyables[this.id]
         
-        let Calculation = new Decimal.pow(1.055, x.add(1))
+        let Calculation = new Decimal.pow(1.005, x.add(1))
         return Base.mul(Calculation).floor()
       },
       display() {
@@ -248,6 +259,7 @@ addLayer("ST", {
     "T0-ST-4": {
       cost(x) {
         let basepow = new Decimal(1.1)
+        basepow = basepow.pow(hasMilestone("T", "T0-9") ? 0.25 : 1)
         let pow1 = new Decimal.div(x, 100).add(1)
         let pow2 = new Decimal.div(x, 100).add(1)
         let pow3 = new Decimal.div(x, 100).add(1)

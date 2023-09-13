@@ -173,8 +173,18 @@ var systemComponents = {
 				<td><button class="opt" onclick="changeNotation()">Notation: {{ player.notation }}</button></td>
 				</tr> 
 				</tr> 
-				<td><button class="opt" onclick="toggleOpt('musicToggle'); needsCanvasUpdate = true">Toggle Music: {{ options.musicToggle?"Unmute":"Mute" }}</button></td>
-				<td><button class="opt" onclick="install_app">Download Game</button>
+				<tr>
+  <td><div id="data-container"><span id="title">Song Title</span> 
+  <br> 
+  <span id="artist">Artist</span></div></td>
+  </div>
+  <td> <audio id="audio">
+    <source src="Noisa-Sifu.mp3" type="audio/mpeg">
+  </audio></td>
+ <td> <button class="opt" id="previous">Previous</button></td>
+ <td> <button class="opt" id="playPause">Play/Pause</button></td>
+ <td> <button class="opt" id="next">Next</button></td>
+ <td> <input id="volume" type="range" min="0" max="1" step="0.005" value="0.5"></td>
 				</tr>
         </table>`
     }, // Thank you Icecreamdude for music player

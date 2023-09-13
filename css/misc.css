@@ -125,12 +125,12 @@
 
 .Title-Text-M {
  font-size: 28px;
- text-shadow: 0px 0px 5px #000000;
+ text-shadow: 0px 0px 0px #000000;
 }
 
 .Title-Text-L {
  font-size: 32px;
- text-shadow: 0px 0px 5px #000000;
+ text-shadow: 0px 0px 0px #000000;
 }
 
 /*Buyable or clickable texts*/
@@ -146,17 +146,17 @@
 
 .Body-Text-S {
  font-size: 18px;
- text-shadow: 0px 0px 10px #000000;
+ text-shadow: 0px 0px 0px #000000;
 }
 
 .Body-Text-M {
  font-size: 20px;
- text-shadow: 0px 0px 10px #000000;
+ text-shadow: 0px 0px 0px #000000;
 }
 
 .Body-Text-L {
  font-size: 22px;
- text-shadow: 0px 0px 10px #000000;
+ text-shadow: 0px 0px 0px #000000;
 }
 
 .Body-Text-XL {

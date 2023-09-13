@@ -1,10 +1,11 @@
 let modInfo = {
-	name: "Lumen Stellar",
-	id: "CTAG455",
-	author: "Niko_ | ( Citrine )",
-	pointsName: "points",
+	name: "TSL : Rebooted",
+	id: "CTAG 0001",
+	author: "Niko_ | ( komputer cast )",
+	pointsName: "Bits",
 	modFiles: [
 	"GameData/Stellar.js", 
+	"GameData/Ethereum.js",
 	"GameData/Tier.js",
 	"GameData/Tokens.js",
 	"tree.js"],
@@ -17,7 +18,7 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0.0.73-1",
+	num: "0.0.2 ",
 	name: "Era of Eras",
 }
 
@@ -64,7 +65,9 @@ function getPointGen() {
 
 	let Production = new Decimal(1)
 	Production = Production.mul(buyableEffect("ST", "T0-ST-1"))
+	Production = Production.mul(buyableEffect("ETH", "T0-ETH-1"))
 	Production = Production.mul(buyableEffect("TK", "T0-TK-1"))
+	Production = Production.mul(hasMilestone("T", "T0-6") ? tmp.T.T7bonus : 1)
 	Production = Production.add(1)
 	return Production
 }
