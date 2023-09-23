@@ -60,14 +60,14 @@
 
 
 <body onload="load()" onmousemove="updateMouse(event)">
-  <div id="app">
-<div id="loading-container">
+  <div id="loading-container">
     <div id="loading-text">Compling Scripts...<br>
-    If it takes too long, check console and report it to me</div>
+      If it takes too long, check console and report it to me</div>
     <div id="loading-progress-bar">
-        <div id="progress"></div>
+      <div id="progress"></div>
     </div>
-</div>
+  </div>
+  <div id="app">
     <canvas id="treeCanvas" class="canvas" v-if="!(tmp.gameEnded && !player.keepGoing)"></canvas>
     <div v-if="false" id="loadingSection" class="fullWidth">
       <h1>Loading... (If this takes too long it means there was a serious error!)←</h1>
