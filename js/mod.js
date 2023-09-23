@@ -6,6 +6,7 @@ let modInfo = {
 	modFiles: [
 	"GameData/Stellar.js", 
 	"GameData/Ethereum.js",
+	"GameData/StarGenerators.js",
 	"GameData/Tier.js",
 	"GameData/Tokens.js",
 	"tree.js"],
@@ -47,7 +48,7 @@ let winText = `Congratulations! You have reached the end and beaten this game, b
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
-var doNotCallTheseFunctionsEveryTick = ["blowUpEverything", "tierUp", "btcReset", "tehReset", "t1Reset", "factoryInvestment", "type1reset", "hardfork", "HardReset", "MultiplierReset", "RebirthReset", "SRebirthReset", "URebirthReset", "fixBitcoin"]
+var doNotCallTheseFunctionsEveryTick = ["blowUpEverything", "searchKeys", "sgiSacrifice", "reset"]
 
 function getStartPoints(){
     return new Decimal(modInfo.initialStartPoints)
@@ -64,10 +65,13 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let Production = new Decimal(1)
-	Production = Production.mul(buyableEffect("ST", "T0-ST-1"))
+	Production = Production.add(buyableEffect("ST", "T0-ST-1"))
 	Production = Production.mul(buyableEffect("ETH", "T0-ETH-1"))
-	Production = Production.mul(buyableEffect("TK", "T0-TK-1"))
-	Production = Production.mul(hasMilestone("T", "T0-6") ? tmp.T.T7bonus : 1)
+	Production = Production.mul(hasMilestone("T", "T0-6") ? tmp.T.T6bonus : 1)
+	Production = Production.mul(hasMilestone("T", "T0-5") ? tmp.ETH.ethBoost : 1)
+	Production = Production.mul(hasMilestone("T", "T0-10") ? tmp.ST.STMagnitudeBoost : 1)
+  Production = Production.mul(hasMilestone("T", "T0-12") ? tmp.SG.sgiBoost1 : 1)
+	Production = Production.pow(buyableEffect("TK", "TK-AS-Bits"))
 	Production = Production.add(1)
 	return Production
 }

@@ -15,6 +15,18 @@
   background: linear-gradient(0deg, rgba(21,122,255,1) 0%, rgba(0,20,116,1) 100%);
 }
 
+.SG.treeNode {
+  border: 0px;
+  border-radius: 5px;
+  background: linear-gradient(180deg, rgba(241,255,0,1) 0%, rgba(0,255,193,1) 100%);
+}
+
+.HS.treeNode {
+  border: 0px;
+  border-radius: 5px;
+  background: linear-gradient(0deg, rgba(224,224,224,1) 0%, rgba(215,210,209,1) 100%);
+}
+
 .main.longUpg {
   border: 0px;
   border-radius: 5px;

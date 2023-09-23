@@ -21,10 +21,19 @@ addLayer("ETH", {
         return new Decimal(1)
     },
     gainEth() {
-      let base = player.ST.points
-      let calc = new Decimal.pow(base.add(1), 0.33).mul(0.5)
-      calc = calc.mul(buyableEffect("ETH", "T0-ETH-2"))
-      calc = calc.mul(buyableEffect("TK", "T0-TK-3"))
+      let base = new Decimal(1)
+      let calc = base.add(buyableEffect("ETH", "T0-ETH-2"))
+      calc = calc.mul(hasMilestone("T", "T0-7") ? tmp.T.T9bonus : 1)
+      calc = calc.pow(buyableEffect("TK", "TK-AS-ETH"))
+      return calc
+    },
+    ethBoost() {
+      let base = player.ETH.points
+      let pow = new Decimal(1.25)
+      let root = new Decimal(2)
+      pow = pow.add(hasMilestone("T", "T0-6") ? 0.14 : 0)
+      root = root.sub(hasMilestone("T", "T0-6") ? 0.06 : 0)
+      let calc = new Decimal.pow(base, pow).sqrt(root)
       return calc
     },
     update(delta) {
@@ -35,18 +44,18 @@ addLayer("ETH", {
 buyables: {
     "T0-ETH-1": {
       cost(x) {
-        let basepow = new Decimal(1.25)
+        let basepow = new Decimal(1.05)
         let pow1 = new Decimal.div(x, 100).add(1)
         let pow2 = new Decimal.div(x, 100).add(1)
         let pow3 = new Decimal.div(x, 100).add(1)
         basepow = basepow.pow(pow1)
         basepow = basepow.pow(pow2)
         basepow = basepow.pow(pow3)
-        let calc = new Decimal.pow(basepow, x).mul(50)
+        let calc = new Decimal.pow(basepow, x).mul(5)
         calc = calc.div(buyableEffect("ETH", "T0-ETH-4"))
         return calc },
       effect(x) {
-        let pow = new Decimal(1.25)
+        let pow = new Decimal(1.33)
         let calc = new Decimal.pow(pow, x)
         return calc
       },
@@ -105,18 +114,18 @@ buyables: {
     },
     "T0-ETH-2": {
       cost(x) {
-        let basepow = new Decimal(2.75)
+        let basepow = new Decimal(2.5)
         let pow1 = new Decimal.div(x, 100).add(1)
         let pow2 = new Decimal.div(x, 100).add(1)
         let pow3 = new Decimal.div(x, 100).add(1)
         basepow = basepow.pow(pow1)
         basepow = basepow.pow(pow2)
         basepow = basepow.pow(pow3)
-        let calc = new Decimal.pow(basepow, x).mul(5000)
+        let calc = new Decimal.pow(basepow, x).mul(75)
         calc = calc.div(buyableEffect("ETH", "T0-ETH-4"))
         return calc },
       effect(x) {
-        let pow = new Decimal(2.25)
+        let pow = new Decimal(3)
         let calc = new Decimal.pow(pow, x)
         return calc
       },
@@ -255,7 +264,7 @@ buyables: {
         basepow = basepow.pow(pow1)
         basepow = basepow.pow(pow2)
         basepow = basepow.pow(pow3)
-        let calc = new Decimal.pow(basepow, x).mul(1e18)
+        let calc = new Decimal.pow(basepow, x).mul(1e12)
         return calc },
       effect(x) {
         let pow = new Decimal(10)
@@ -315,7 +324,7 @@ buyables: {
       }
       },
       unlocked() {
-        return hasMilestone("T", "T0-8")
+        return hasMilestone("T", "T0-7")
       }
     },
 },
@@ -331,6 +340,10 @@ buyables: {
               }],
               ['raw-html', () => {
                 return `<b class='Main-Sub-Text'>You are cooling <b class='Currency-Sub-Text'>${format(tmp.ETH.gainEth)}</b> ETH / sec</b>`
+              }],
+              "blank",
+              ['raw-html', () => {
+                return `<b class='Main-Sub-Text'>Your ETH is also boosting ST & Bits by <b class='Currency-Sub-Text'>${format(tmp.ETH.ethBoost)}</b>x</b>`
               }],
               "blank",
               "h-line",
