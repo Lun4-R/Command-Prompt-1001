@@ -729,12 +729,14 @@ document.addEventListener("DOMContentLoaded", function() {
     let loadedScripts = 0;
 
     function scriptLoaded() {
+      document.getElementById("app").style.display = "none"
       loadedScripts++;
       const progress = (loadedScripts / totalScripts) * 100;
       const progressBar = document.getElementById("progress");
       progressBar.style.width = `${progress}%`;
       if (loadedScripts === totalScripts) {
         document.getElementById("loading-container").style.display = "none";
+        document.getElementById("app").style.display = "block"
       }
     }
 
