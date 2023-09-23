@@ -44,7 +44,8 @@
   font-size: 20px;
   border: 0px;
   border-radius: 5px;
-  
+  height: 75px;
+  width: 75px;
   animation: pulseTK 2s infinite;
 }
 
