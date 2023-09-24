@@ -68,6 +68,7 @@ function getPointGen() {
 	Production = Production.add(buyableEffect("ST", "T0-ST-1"))
 	Production = Production.mul(buyableEffect("ETH", "T0-ETH-1"))
 	Production = Production.mul(hasMilestone("T", "T0-6") ? tmp.T.T6bonus : 1)
+	Production = Production.mul(hasMilestone("T", "T0-11") ? tmp.T.T11bonus : 1)
 	Production = Production.mul(hasMilestone("T", "T0-5") ? tmp.ETH.ethBoost : 1)
 	Production = Production.mul(hasMilestone("T", "T0-10") ? tmp.ST.STMagnitudeBoost : 1)
   Production = Production.mul(hasMilestone("T", "T0-12") ? tmp.SG.sgiBoost1 : 1)

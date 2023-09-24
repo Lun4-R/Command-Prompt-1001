@@ -69,6 +69,11 @@ addLayer("T", {
     let tier = player.T.points
     return new Decimal.pow(base, tier)
   },
+  T11bonus() {
+   let base = new Decimal(12)
+   let tier = player.T.points
+   return new Decimal.pow(base, tier) 
+  },
   clickables: {
   "doTierReset": {
     display() {
@@ -266,9 +271,9 @@ addLayer("T", {
     shownFn: () => hasMilestone("T", "T0-10"),
     doneFn: () => player.T.points.gte(19),
     amountFn: () => 11,
-    benefitsFn: () => ["N/A"],
-    ranksFn: () => ["-"],
-    effectsFn: () => ["N/A"],
+    benefitsFn: () => ["Gain 12x Bits / Tier"],
+    ranksFn: () => ["2"],
+    effectsFn: () => [`${format(tmp.T.T11bonus)}x Bits`],
     willToast: true,
     toastMessage: "T19 milestone achieved!",
     toastType: "toast-notify",
