@@ -1,8 +1,8 @@
 * {
-	transition-duration: 0.33s;
+	transition-duration: 0.1s;
 	text-align: center;
 	font-family: CRDILight;
-	font-weight: bold;
+  font-weight: 500;
 	table-align: center;
 	margin: auto;
 	-webkit-text-size-adjust: none;
@@ -106,7 +106,6 @@ td {
 	flex-flow: column wrap;
 	justify-content: center;
 	align-items: center;
-	max-width: 100%;
 	margin: 0 auto;
 }
 
@@ -115,7 +114,6 @@ td {
 	flex-flow: row wrap;
 	justify-content: center;
 	align-items: center;
-	max-width: 100%;
 	margin: 0 auto;
 }
 
@@ -175,6 +173,8 @@ td {
 .canvas {
 	top: 0;
 	left: 0;
+	max-height: 3840px;
+	max-width: 2160px;
 	position: absolute;
 	z-index: -999;
 }

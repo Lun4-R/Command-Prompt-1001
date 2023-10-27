@@ -58,6 +58,8 @@ function drawTreeBranch(num1, data, prefix) { // taken from Antimatter Dimension
 	let num2 = data
 	let color_id = 1
 	let width = 15
+	ctx.imageSmoothingEnabled = true;
+
 	if (Array.isArray(data)){
 		num2 = data[0]
 		color_id = data[1]
@@ -80,6 +82,8 @@ function drawTreeBranch(num1, data, prefix) { // taken from Antimatter Dimension
     let x2 = end.left + (end.width / 2) + document.body.scrollLeft;
     let y2 = end.top + (end.height / 2) + document.body.scrollTop;
     ctx.lineWidth = width;
+    ctx.lineCap = "round";
+
     ctx.beginPath();
     ctx.strokeStyle = color_id
     ctx.moveTo(x1, y1);

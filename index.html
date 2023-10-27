@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <head>
+  <title id='ticker'> </title>
   <meta charset="UTF-16">
   <meta name="keywords" content="idle game, The Stellar Lumen, space, strategy, simulation, incremental game" />
   <meta name="description" content="A JavaScipt game involving large numbers! And currencies >_>" />
@@ -60,13 +61,7 @@
 
 
 <body onload="load()" onmousemove="updateMouse(event)">
-  <div id="loading-container">
-    <div id="loading-text">Compling Scripts...<br>
-      If it takes too long, check console and report it to me</div>
-    <div id="loading-progress-bar">
-      <div id="progress"></div>
-    </div>
-  </div>
+  
   <div id="app">
     <canvas id="treeCanvas" class="canvas" v-if="!(tmp.gameEnded && !player.keepGoing)"></canvas>
     <div v-if="false" id="loadingSection" class="fullWidth">
@@ -94,7 +89,7 @@
       <div id="version" onclick="showTab('changelog-tab')" class="overlayThing" style="margin-right: 13px">
         Changelog</div>
       <div class="header">
-        <a href="#default" class="title" style="flex: display">The Stellar Lumen : RE<sup>2</sup> {{VERSION.withoutName}}<sup></sup></a>
+        <a href="#default" class="title" style="flex: display">TSL: RE-RE {{VERSION.withoutName}}<sup></sup></a>
       </div>
       <div class="headerglow">
         <glow href="#default" class="title" style="position: center center"></glow>

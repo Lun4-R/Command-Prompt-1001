@@ -1,15 +1,4 @@
-@font-face {
-  font-family: CRDILight;
-  src: url('../font-folder/Barlow-ExtraLight.otf')
-}
-
-
-.mtext {
-font-size: 40px;
-font-family: CRDILight;
-display: flex;
-justify-content: center;
-align-items: center;
-margin: 5px;
-text-align: center;
+#bonus-eff {
+  color: #40ff73;
+  text-shadow: 0px 0px 20px #40ff73;
 }

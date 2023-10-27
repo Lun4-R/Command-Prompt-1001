@@ -4,7 +4,8 @@ let modInfo = {
 	author: "Niko_ | ( komputer cast )",
 	pointsName: "Bits",
 	modFiles: [
-	"GameData/Stellar.js", 
+	"Data/Stellar.js",
+	"Data/Achievements.js", 
 	"GameData/Ethereum.js",
 	"GameData/StarGenerators.js",
 	"GameData/Tier.js",
@@ -19,8 +20,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0.3 ",
-	name: "Scalar",
+	num: "0.0.5 VEC",
+	name: "Vector Era",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
@@ -48,7 +49,7 @@ let winText = `Congratulations! You have reached the end and beaten this game, b
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
-var doNotCallTheseFunctionsEveryTick = ["blowUpEverything", "searchKeys", "sgiSacrifice", "reset"]
+var doNotCallTheseFunctionsEveryTick = ["blowUpEverything", "performBoosterReset", "ALL1", "ALL2", "ALL3", "ALL4", "ALL5", "ALL6"]
 
 function getStartPoints(){
     return new Decimal(modInfo.initialStartPoints)
@@ -61,20 +62,9 @@ function canGenPoints(){
 
 // Calculate points/sec!
 function getPointGen() {
-	if(!canGenPoints())
-		return new Decimal(0)
-
-	let Production = new Decimal(1)
-	Production = Production.add(buyableEffect("ST", "T0-ST-1"))
-	Production = Production.mul(buyableEffect("ETH", "T0-ETH-1"))
-	Production = Production.mul(hasMilestone("T", "T0-6") ? tmp.T.T6bonus : 1)
-	Production = Production.mul(hasMilestone("T", "T0-11") ? tmp.T.T11bonus : 1)
-	Production = Production.mul(hasMilestone("T", "T0-5") ? tmp.ETH.ethBoost : 1)
-	Production = Production.mul(hasMilestone("T", "T0-10") ? tmp.ST.STMagnitudeBoost : 1)
-  Production = Production.mul(hasMilestone("T", "T0-12") ? tmp.SG.sgiBoost1 : 1)
-	Production = Production.pow(buyableEffect("TK", "TK-AS-Bits"))
-	Production = Production.add(1)
-	return Production
+	if(!canGenPoints()) return new Decimal(0)
+	let gain = new Decimal(0)
+	return gain
 }
 
 // You can add non-layer related variables that should to into "player" and be saved here, along with default values
@@ -101,7 +91,7 @@ var backgroundStyle = {
 
 // You can change this if you have things that can be messed up by long tick lengths
 function maxTickLength() {
-	return(3600) // Default is 1 hour which is just arbitrarily large
+	return(2) // Default is 1 hour which is just arbitrarily large
 }
 
 // Use this if you need to undo inflation from an older version. If the version is older than the version that fixed the issue,

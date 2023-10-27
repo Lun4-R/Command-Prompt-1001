@@ -11,13 +11,14 @@ body {
 
 @font-face {
   font-family: CRDILight;
-  src: url('../font-folder/F4.otf')
+  src: url('../font-folder/MonospaceTypewriter.ttf')
 }
 
 /* General text */
 h1, h2, h3, b, input {
 	display: inline;
-	font-family: CRDILight
+	font-family: CRDILight;
+	font-weight: 100;
 }
 
 /* These are styles for different states of components. You can make layer-specific versions with .c.locked, for example */
@@ -29,11 +30,6 @@ h1, h2, h3, b, input {
 /* Can meens can be clicked/bought/etc */
 .can {
 	cursor: pointer;
-}
-
-.can:hover {
-	transform: scale(1.075, 1.075);
-	box-shadow: 0 0 10px
 }
 
 .bought {
