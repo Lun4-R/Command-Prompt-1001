@@ -1470,7 +1470,7 @@ addLayer("ST", {
         player[this.layer].sparticles = player[this.layer].sparticles.sub(this.cost())
         setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
       },
-      canAfford() {
+     canAfford() {
         return player[this.layer].sparticles.gte(this.cost())
       },
       unlocked() {
