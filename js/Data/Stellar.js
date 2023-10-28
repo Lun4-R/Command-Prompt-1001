@@ -44,6 +44,7 @@ addLayer("ST", {
   passiveGeneration() {
     return new Decimal(1)
   },
+  color: "#ffffff",
   row: 0,
   layerShown() { return true },
   update(delta) {
@@ -56,12 +57,11 @@ addLayer("ST", {
     }
     
     if (hasUpgrade("ST", "AT1")) {
-      tmp[this.layer].buyables["I"].buyMax()
-      tmp[this.layer].buyables["II"].buyMax()
+      buyBuyable("ST", "I")
+      buyBuyable("ST", "II")
     }
     
     if (hasUpgrade("ST", "AT2")) {
-      tmp[this.layer].buyables["III"].buyMax()
       buyBuyable("ST", "SI")
       buyBuyable("ST", "III")
     }
@@ -75,8 +75,8 @@ addLayer("ST", {
     base = base.mul(hasUpgrade("ST", "RE2") ? tmp.ST.RE2Bonus : 1)
     base = base.mul(buyableEffect("ST", "IV"))
     base = base.mul(buyableEffect("ST", "V"))
-    base = base.mul(tmp.ST.GRID2Bonus)
-    basse= base.mul(tmp.ST.GRID6Bonus)
+    base = base.mul(tmp.ST.GRID2Bonus).max(0)
+    base = base.mul(tmp.ST.GRID6Bonus).max(0)
     base = base.mul(player.ST.points.gte(1.18e38) ? 0 : 1)
     return base
   },
@@ -109,7 +109,7 @@ addLayer("ST", {
     base = base.mul(player.ST.sparticles.gte(tmp.ST.R3Req) ? tmp.ST.R3Bonus : 1)
     base = base.mul(buyableEffect("ST", "EI"))
     base = base.mul(tmp.ST.GRID5Bonus)
-    basse= base.mul(tmp.ST.GRID6Bonus)
+    base = base.mul(tmp.ST.GRID6Bonus)
     return base
   },
   performBoosterReset() {
@@ -255,10 +255,10 @@ addLayer("ST", {
   
   
   RE1Bonus() {
-    return new Decimal.pow(1.25, Decimal.log(player.ST.points.add(1), 10)) 
+    return new Decimal.pow(1.25, Decimal.log(player.ST.points.add(1), 10)).max(1)
   },
   RE2Bonus() {
-    return new Decimal.pow(1.01, Decimal.log(player.ST.points.add(1), 2))
+    return new Decimal.pow(1.01, Decimal.log(player.ST.points.add(1), 2)).max(1)
   },
   clickables: {
     "MaxI": {

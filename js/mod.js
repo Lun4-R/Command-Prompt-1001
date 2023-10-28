@@ -6,7 +6,7 @@ let modInfo = {
 	modFiles: [
 	"Data/Stellar.js",
 	"Data/Achievements.js", 
-	"GameData/Ethereum.js",
+	"Data/Ethereum.js",
 	"GameData/StarGenerators.js",
 	"GameData/Tier.js",
 	"GameData/Tokens.js",
@@ -20,7 +20,7 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0.5 VEC",
+	num: "0.0.501 VEC",
 	name: "Vector Era",
 }
 
